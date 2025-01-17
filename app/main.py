@@ -10,7 +10,7 @@ def main():
         if command.split(" ")[0] == "echo":
             arr = command.split(" ")
             print(" ".join(arr[1:]))
-        print(f"{command}: command not found")
+        else: print(f"{command}: command not found")
         main()
 
 
