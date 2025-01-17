@@ -16,7 +16,7 @@ def main():
             current_path = None
             for path in paths:
                 if os.path.isfile(f"{path}/{arr[1]}"):
-                    current_path = f"{path/{arr[1]}}"
+                    current_path = f"{path}/{arr[1]}"
             if arr[1] == "type" or arr[1] == "exit" or arr[1] == "echo":
                 print(f"{arr[1]} is a shell builtin\n")
             elif current_path:
