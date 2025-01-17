@@ -6,10 +6,13 @@ def main():
         sys.stdout.write("$ ")
         # Wait for user input
         command = input()
-        if command.split(" ")[0] == "exit" and command.split(" ")[1] == "0": exit()
-        if command.split(" ")[0] == "echo":
-            arr = command.split(" ")
+        arr = command.split(" ")
+        if arr[0] == "exit" and arr[1] == "0": exit()
+        if arr[0] == "echo":
             print(" ".join(arr[1:]))
+        if arr[0] == "type":
+            if arr[1] == "type" or arr[1] == "exit" or arr[1] == "echo":
+                print(f"{arr[1]} is a shell builtin") 
         else: print(f"{command}: command not found")
 
 
