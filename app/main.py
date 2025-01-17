@@ -11,7 +11,7 @@ def main():
             arr = command.split(" ")
             print(" ".join(arr[1:]))
         print(f"{command}: command not found")
-        # main()
+        main()
 
 
 
