@@ -8,7 +8,7 @@ def main():
         command = input()
         if command == "exit 0": break
         if command.split(" ")[0] == "echo":
-            " ".join(command.split(" ").pop(0))
+            " ".join(command.split(" ").remove("echo"))
         print(f"{command}: command not found")
         # main()
 
