@@ -13,16 +13,16 @@ def main():
             print(" ".join(arr[1:]))
         elif arr[0] == "type":
             paths = PATH.split(":")
-            valid_path = False
+            current_path = None
             for path in paths:
                 if os.path.isfile(f"{path}/{arr[1]}"):
-                    valid_path = True
+                    current_path = f"{path/{arr[1]}}"
             if arr[1] == "type" or arr[1] == "exit" or arr[1] == "echo":
-                print(f"{arr[1]} is a shell builtin")
-            elif valid_path:
-                print(f"{arr[1]} is {path}/{arr[1]}")
-            else: print(f"{arr[1]}: not found") 
-        else: print(f"{arr[0]}: command not found")
+                print(f"{arr[1]} is a shell builtin\n")
+            elif current_path:
+                print(f"{arr[1]} is {current_path}\n")
+            else: print(f"{arr[1]}: not found\n") 
+        else: print(f"{arr[0]}: command not found\n")
 
 
 
