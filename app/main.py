@@ -8,9 +8,8 @@ def main():
         command = input()
         if command == "exit 0": break
         if command.split(" ")[0] == "echo":
-            for i in command.split(" "):
-                if i == 0 : continue
-                else: print(i)
+            arr = command.split(" ")
+            print(" ".join(arr[1:]))
         print(f"{command}: command not found")
         # main()
 
