@@ -12,7 +12,8 @@ def main():
             print(" ".join(arr[1:]))
         if arr[0] == "type":
             if arr[1] == "type" or arr[1] == "exit" or arr[1] == "echo":
-                print(f"{arr[1]} is a shell builtin") 
+                print(f"{arr[1]} is a shell builtin")
+            else: print(f"{arr[1]}: not found") 
         else: print(f"{command}: command not found")
 
 
