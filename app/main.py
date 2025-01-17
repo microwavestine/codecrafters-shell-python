@@ -1,7 +1,8 @@
 import sys
-
+import os
 
 def main():
+    PATH = os.environ.get("PATH")
     while(True):
         sys.stdout.write("$ ")
         # Wait for user input
@@ -11,6 +12,11 @@ def main():
         elif arr[0] == "echo":
             print(" ".join(arr[1:]))
         elif arr[0] == "type":
+            paths = PATH.split(":")
+            valid_cmd = None
+            for path in paths:
+                if os.path.isfile(f"{path}/{arr[1]}"):
+                    print(f"{arr[1]} is {path}/{arr[1]}")
             if arr[1] == "type" or arr[1] == "exit" or arr[1] == "echo":
                 print(f"{arr[1]} is a shell builtin")
             else: print(f"{arr[1]}: not found") 
