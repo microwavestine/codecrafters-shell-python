@@ -7,6 +7,8 @@ def main():
         # Wait for user input
         command = input()
         if command == "exit 0": break
+        if command.split(" ")[0] == "echo":
+            print(command.split(" ")[1])
         print(f"{command}: command not found")
         # main()
 
