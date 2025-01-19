@@ -21,8 +21,12 @@ def main():
                 print(f"{arr[1]} is a shell builtin")
             elif current_path:
                 print(f"{arr[1]} is {current_path}")
-            else: print(f"{arr[1]}: not found") 
-        else: print(f"{arr[0]}: command not found")
+            else: print(f"{arr[1]}: not found")
+        else:
+            if os.path.isfile(command.split(" ")[0]):
+                os.system(command)
+            else:
+                print(f"{arr[0]}: command not found")
 
 
 
