@@ -33,7 +33,8 @@ def main():
             program = find_command(command[0])
             if program:
                 isProgram = True
-                os.system(" ".join([program, *command[1:]]))
+                # os.system(" ".join([program, *command[1:]]))
+                os.system(*command[1:])
             else:
                 print(f"{command[0]}: command not found")
         if not is_program:
