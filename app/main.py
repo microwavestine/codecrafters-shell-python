@@ -3,13 +3,14 @@ import os
 import subprocess
 
 def main():
-    PATH = os.environ.get("PATH", "")
-    paths = PATH.split(":")
     while(True):
         sys.stdout.write("$ ")
         # Wait for user input
         command = input()
         arr = command.split(" ")
+
+        PATH = os.environ.get("PATH", "")
+        paths = PATH.split(":")
         if arr[0] == "exit" and arr[1] == "0": break
         elif arr[0] == "echo":
             print(" ".join(arr[1:]))
@@ -25,8 +26,7 @@ def main():
             else: print(f"{arr[1]}: not found")
         else:
             # Run external program
-            PATH = os.environ.get("PATH", "")
-            paths = PATH.split(":")
+            command = input()
             for path in paths:
                 if os.path.isfile(f"{path}/{arr[1]}"):
                     os.system(command)
