@@ -1,6 +1,5 @@
 import sys
 import os
-import subprocess
 
 def main():
     PATH = os.environ.get("PATH", "")
@@ -27,9 +26,7 @@ def main():
             # Run external program
             current_path = None
             for path in paths:
-                # if os.path.isfile(f"{path}/{arr[1]}"):
-                #     current_path = f"{path}/{arr[1]}"
-                if os.path.isfile(command.split(" ")[0]):
+                if os.path.isfile(f"{path}/{arr[1]}"):
                     os.system(command)
             else:
                 print(f"{arr[0]}: command not found")
