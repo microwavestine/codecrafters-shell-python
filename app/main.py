@@ -8,7 +8,7 @@ def main():
     while(True):
         sys.stdout.write("$ ")
         # Wait for user input
-        command, *args = input()
+        command = input()
         arr = command.split(" ")
         if arr[0] == "exit" and arr[1] == "0": break
         elif arr[0] == "echo":
@@ -29,7 +29,7 @@ def main():
             for path in paths:
                 file_path = os.path.join(path, command)
                 if os.path.isfile(file_path):
-                    subprocess.run([file_path,*args])
+                    subprocess.run([arr[0], arr[1]])
             else:
                 print(f"{arr[0]}: command not found")
 
