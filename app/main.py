@@ -27,6 +27,8 @@ def main():
         else:
             # Run external program
             command = input()
+            PATH = os.environ.get("PATH", "")
+            paths = PATH.split(":")
             for path in paths:
                 if os.path.isfile(f"{path}/{arr[1]}"):
                     os.system(command)
