@@ -6,11 +6,10 @@ def main():
     while(True):
         sys.stdout.write("$ ")
         # Wait for user input
-        command = input()
-        arr = command.split(" ")
-
         PATH = os.environ.get("PATH", "")
         paths = PATH.split(":")
+        command = input()
+        arr = command.split(" ")
         if arr[0] == "exit" and arr[1] == "0": break
         elif arr[0] == "echo":
             print(" ".join(arr[1:]))
@@ -27,6 +26,10 @@ def main():
         else:
             # Run external program
             for path in paths:
+                PATH = os.environ.get("PATH", "")
+                paths = PATH.split(":")
+                command = input()
+                arr = command.split(" ")
                 if os.path.isfile(f"{path}/{arr[1]}"):
                     os.system(command)
             else:
