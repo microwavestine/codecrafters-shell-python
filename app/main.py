@@ -25,11 +25,11 @@ def main():
             else: print(f"{arr[1]}: not found")
         else:
             # Run external program
-            current_path = None
+            PATH = os.environ.get("PATH", "")
+            paths = PATH.split(":")
             for path in paths:
-                file_path = os.path.join(path, command)
-                if os.path.isfile(file_path):
-                    subprocess.run([arr[0], arr[1]])
+                if os.path.isfile(f"{path}/{arr[1]}"):
+                    os.system(command)
             else:
                 print(f"{arr[0]}: command not found")
 
