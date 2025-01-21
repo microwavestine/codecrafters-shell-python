@@ -1,5 +1,6 @@
 import sys
 import os
+import subprocess
 
 def main():
     PATH = os.environ.get("PATH", "")
@@ -7,7 +8,7 @@ def main():
     while(True):
         sys.stdout.write("$ ")
         # Wait for user input
-        command = input()
+        command, *args = input()
         arr = command.split(" ")
         if arr[0] == "exit" and arr[1] == "0": break
         elif arr[0] == "echo":
@@ -26,8 +27,9 @@ def main():
             # Run external program
             current_path = None
             for path in paths:
-                if os.path.isfile(f"{path}/{arr[1]}"):
-                    os.system(command)
+                file_path = os.path.join(path, command)
+                if os.path.isfile(file_path):
+                    subprocess.run([file_path,*args])
             else:
                 print(f"{arr[0]}: command not found")
 
