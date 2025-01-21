@@ -6,8 +6,8 @@ def find_command(command):
     paths = os.environ.get('PATH') or ""
     for path in map(lambda s: f"{s}/{command}", paths.split(":")):
         if Path(path).exists():
-            return path
-
+            parts = path.split("/")
+            return parts[-1]
     return None
 
 def main():
@@ -32,9 +32,8 @@ def main():
             # Run external program
             program = find_command(command[0])
             if program:
-                isProgram = True
-                # os.system(" ".join([program, *command[1:]]))
-                os.system(program)
+                is_program = True
+                os.system(" ".join([program, *command[1:]]))
             else:
                 print(f"{command[0]}: command not found")
         if not is_program:
