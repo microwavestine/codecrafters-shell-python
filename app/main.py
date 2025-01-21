@@ -10,6 +10,13 @@ def find_command(command):
             return parts[-1]
     return None
 
+def find_path(command):
+    paths = os.environ.get('PATH') or ""
+    for path in map(lambda s: f"{s}/{command}", paths.split(":")):
+        if Path(path).exists():
+            return path
+    return None
+
 def main():
     while(True):
         sys.stdout.write("$ ")
@@ -22,7 +29,7 @@ def main():
         elif command[0] == "echo":
             print(" ".join(command[1:]))
         elif command[0] == "type":
-            current_path = find_command(command[1])
+            current_path = find_path(command[1])
             if command[1] == "type" or command[1] == "exit" or command[1] == "echo":
                 print(f"{command[1]} is a shell builtin")
             elif current_path:
