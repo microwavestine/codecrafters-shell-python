@@ -29,7 +29,7 @@ def main():
         if command[0] == "exit" and command[1] == "0": break
         elif command[0] == "echo":
             if command[1].startswith("'") and command[1].endswith("'"):
-                message = command[1][:-1]
+                message = command[1]
                 print(message)
             else:
                 parts = shlex.split(command[1][5:])
