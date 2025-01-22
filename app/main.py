@@ -46,7 +46,7 @@ def main():
                 is_program = True
                 os.chdir(path)
             else:
-                sys.stdout.write(f"{command[0]}: {command[1]}: No such file or directory")
+                sys.stdout.write(f"{command[0]}: {command[1]}: No such file or directory\n")
         else:
             # Run external program
             program = find_command(command[0])
