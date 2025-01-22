@@ -30,7 +30,7 @@ def main():
             print(" ".join(command[1:]))
         elif command[0] == "type":
             current_path = find_path(command[1])
-            if command[1] == "type" or command[1] == "exit" or command[1] == "echo":
+            if command[1] == "type" or command[1] == "exit" or command[1] == "echo" or command[1] == "pwd":
                 print(f"{command[1]} is a shell builtin")
             elif current_path:
                 print(f"{command[1]} is {current_path}")
