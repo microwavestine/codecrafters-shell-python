@@ -36,7 +36,7 @@ def main():
                 print(f"{command[1]} is {current_path}")
             else: print(f"{command[1]}: not found")
         elif command[0] == "pwd":
-            sys.stdout.write(os.getcwd())
+            sys.stdout.write(os.getcwd() + "\n")
         else:
             # Run external program
             program = find_command(command[0])
@@ -45,8 +45,6 @@ def main():
                 os.system(" ".join([program, *command[1:]]))
             else:
                 print(f"{command[0]}: command not found")
-        if not is_program:
-            sys.stdout.write("\n")
         sys.stdout.flush()
 if __name__ == "__main__":
     main()
