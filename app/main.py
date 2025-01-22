@@ -35,6 +35,8 @@ def main():
             elif current_path:
                 print(f"{command[1]} is {current_path}")
             else: print(f"{command[1]}: not found")
+        elif command[0] == "pwd":
+            sys.stdout.write(os.getcwd())
         else:
             # Run external program
             program = find_command(command[0])
