@@ -28,12 +28,13 @@ def main():
 
         if command[0] == "exit" and command[1] == "0": break
         elif command[0] == "echo":
-            if command[1].startswith("'") and command[1].endswith("'"):
-                message = command[1]
-                print(message)
-            else:
-                parts = shlex.split(command[1][5:])
-                print(" ".join(parts))
+            print(command)
+            # if command[1].startswith("'") and command[1].endswith("'"):
+            #     message = command[1]
+            #     print(message)
+            # else:
+            #     parts = shlex.split(command[1][5:])
+            #     print(" ".join(parts))
         elif command[0] == "type":
             current_path = find_path(command[1])
             if command[1] == "type" or command[1] == "exit" or command[1] == "echo" or command[1] == "pwd":
