@@ -37,6 +37,16 @@ def main():
             else: print(f"{command[1]}: not found")
         elif command[0] == "pwd":
             sys.stdout.write(os.getcwd() + "\n")
+        elif command[0] == "cd":
+            path = Path(command[1])
+            if command[1].startswith("~"):
+                path = path.expanduser()
+
+            if path.exists() and path.is_dir():
+                is_program = True
+                os.chdir(path)
+            else:
+                sys.stdout.write(f"{command[0]}: {command[1]}: No such file or directory")
         else:
             # Run external program
             program = find_command(command[0])
