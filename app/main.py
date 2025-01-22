@@ -45,9 +45,8 @@ def main():
                 os.system(" ".join([program, *command[1:]]))
             else:
                 print(f"{command[0]}: command not found")
+        if not is_program:
+            sys.stdout.write("\n")
         sys.stdout.flush()
-        # if not is_program:
-        #     sys.stdout.write("\n")
-        # sys.stdout.flush()
 if __name__ == "__main__":
     main()
