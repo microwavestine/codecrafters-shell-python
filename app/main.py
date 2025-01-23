@@ -23,7 +23,12 @@ def main():
         sys.stdout.write("$ ")
         sys.stdout.flush()
         # Wait for user input
-        command, args = input().split()
+
+        line = input()
+        try:
+            command, args = line.split(maxsplit=1)
+        except:
+            command = line
         is_program = False
 
         if command[0] == "exit" and command[1] == "0": break
