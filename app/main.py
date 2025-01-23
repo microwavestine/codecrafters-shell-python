@@ -2,6 +2,15 @@ import sys
 import os
 from pathlib import Path
 import shlex
+import subprocess
+
+def findExecutable(command):
+    paths = os.getenv("PATH", "").split(os.pathsep)
+    for path in paths:
+        executablePath = os.path.join(path, command)
+        if os.path.isfile(executablePath):
+            return executablePath
+    return None
 
 def find_command(command):
     paths = os.environ.get('PATH') or ""
@@ -54,7 +63,13 @@ def main():
             program = find_command(command[0])
             if program:
                 is_program = True
-                os.system(" ".join([program, *command[1:]]))
+                args = shlex.split(line)
+                executablePath = findExecutable(args[0])
+                print(executablePath)
+                if executablePath:
+                    result = subprocess.run(args, capture_output=True, text=True)
+                    print(result.stdout, end="")
+                # os.system(" ".join([program, *command[1:]]))
                 # if program == "cat":
                 #     arr = shlex.split(line)[1:]
                 #     newarr = []
