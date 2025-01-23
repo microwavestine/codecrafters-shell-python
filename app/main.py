@@ -54,13 +54,14 @@ def main():
             program = find_command(command[0])
             if program:
                 is_program = True
-                if program == "cat":
-                    arr = shlex.split(line)[1:]
-                    newarr = []
-                    for i in arr:
-                        newarr.append(i.replace(" ", ""))
-                        os.system(" ".join([program, *newarr]))
-                else: os.system(" ".join([program, *command[1:]]))
+                os.system(" ".join([program, *command[1:]]))
+                # if program == "cat":
+                #     arr = shlex.split(line)[1:]
+                #     newarr = []
+                #     for i in arr:
+                #         newarr.append(i.replace(" ", ""))
+                #         os.system(" ".join([program, *newarr]))
+                # else: os.system(" ".join([program, *command[1:]]))
             else:
                 print(f"{command[0]}: command not found")
         sys.stdout.flush()
