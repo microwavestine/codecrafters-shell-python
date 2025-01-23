@@ -24,22 +24,11 @@ def main():
         sys.stdout.flush()
         # Wait for user input
 
-        line = input()
-        try:
-            command, args = line.split(maxsplit=1)
-        except:
-            command = line
-        is_program = False
+        command = input().split()
 
         if command[0] == "exit" and command[1] == "0": break
         elif command[0] == "echo":
-            args = shlex.split(args)
-            for i in range(len(args)):
-                if (args[i].startswith("'") and args[i].endswith("'")) or (
-                    args[i].startswith('"') and args[i].endswith('"')
-                ):
-                    args[i] = args[i][1:-1]
-            print(" ".join(args))
+            print(shlex.join(command))
         elif command[0] == "type":
             current_path = find_path(command[1])
             if command[1] == "type" or command[1] == "exit" or command[1] == "echo" or command[1] == "pwd":
