@@ -23,18 +23,18 @@ def main():
         sys.stdout.write("$ ")
         sys.stdout.flush()
         # Wait for user input
-        command = input().split()
+        command, args = input().split()
         is_program = False
 
         if command[0] == "exit" and command[1] == "0": break
         elif command[0] == "echo":
-            print(command)
-            # if command[1].startswith("'") and command[1].endswith("'"):
-            #     message = command[1]
-            #     print(message)
-            # else:
-            #     parts = shlex.split(command[1][5:])
-            #     print(" ".join(parts))
+            args = shlex.split(args)
+            for i in range(len(args)):
+                if (args[i].startswith("'") and args[i].endswith("'")) or (
+                    args[i].startswith('"') and args[i].endswith('"')
+                ):
+                    args[i] = args[i][1:-1]
+            print(" ".join(args))
         elif command[0] == "type":
             current_path = find_path(command[1])
             if command[1] == "type" or command[1] == "exit" or command[1] == "echo" or command[1] == "pwd":
