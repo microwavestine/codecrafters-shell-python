@@ -65,7 +65,6 @@ def main():
                 is_program = True
                 args = shlex.split(line)
                 executablePath = findExecutable(args[0])
-                print(executablePath)
                 if executablePath:
                     result = subprocess.run(args, capture_output=True, text=True)
                     print(result.stdout, end="")
