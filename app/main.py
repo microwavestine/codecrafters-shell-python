@@ -55,7 +55,7 @@ def main():
             if program:
                 is_program = True
                 if program == "cat":
-                    os.system("".join([program, *command[1:]]))
+                    os.system(" ".join([program, "".join(*command[1:])]))
                 else: os.system(" ".join([program, *command[1:]]))
             else:
                 print(f"{command[0]}: command not found")
