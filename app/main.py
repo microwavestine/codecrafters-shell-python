@@ -24,11 +24,12 @@ def main():
         sys.stdout.flush()
         # Wait for user input
 
-        command = input().split()
+        line = input()
+        command = line.split()
 
         if command[0] == "exit" and command[1] == "0": break
         elif command[0] == "echo":
-            print(shlex.join(command))
+            print(shlex.join(line))
         elif command[0] == "type":
             current_path = find_path(command[1])
             if command[1] == "type" or command[1] == "exit" or command[1] == "echo" or command[1] == "pwd":
