@@ -48,13 +48,18 @@ def main():
             else: print(f"{command[1]}: not found")
         elif command[0] == "pwd":
             sys.stdout.write(os.getcwd() + "\n")
+        elif line.startswith('"') or line.startswith("'"):
+                command_list = shlex.split(line, posix=True)
+                file_path = command_list[1]
+                file = open(file_path, "r")
+                sys.stdout.write(f"{file.read()}")
+                file.close()
         elif command[0] == "cd":
             path = Path(command[1])
             if command[1].startswith("~"):
                 path = path.expanduser()
 
             if path.exists() and path.is_dir():
-                is_program = True
                 os.chdir(path)
             else:
                 sys.stdout.write(f"{command[0]}: {command[1]}: No such file or directory\n")
@@ -62,20 +67,11 @@ def main():
             # Run external program
             program = find_command(command[0])
             if program:
-                is_program = True
                 args = shlex.split(line)
                 executablePath = findExecutable(args[0])
                 if executablePath:
                     result = subprocess.run(args, capture_output=True, text=True)
                     print(result.stdout, end="")
-                # os.system(" ".join([program, *command[1:]]))
-                # if program == "cat":
-                #     arr = shlex.split(line)[1:]
-                #     newarr = []
-                #     for i in arr:
-                #         newarr.append(i.replace(" ", ""))
-                #         os.system(" ".join([program, *newarr]))
-                # else: os.system(" ".join([program, *command[1:]]))
             else:
                 print(f"{command[0]}: command not found")
         sys.stdout.flush()
